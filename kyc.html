@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>KYC Verification — OnecentralBank </title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="topbar">
+  <div class="brand">One<span>CentralBank</span> </div>
+  <div class="user-chip"><span class="dot"></span><span id="userEmail">user</span></div>
+</div>
+
+<div class="auth-wrap" style="background:var(--bg-soft);min-height:calc(100vh - 57px);align-items:flex-start;padding-top:60px;">
+  <div class="auth-card" style="width:480px;">
+    <h1>Identity Verification (KYC)</h1>
+    <p class="sub">Complete the steps below to activate full account access. This is simulated — no documents are uploaded anywhere.</p>
+
+    <div style="display:flex;align-items:center;margin:20px 0 26px;">
+      <div class="kyc-step done" id="step1"><div class="num">✓</div>&nbsp;Email</div>
+      <div class="progress-line"></div>
+      <div class="kyc-step active" id="step2"><div class="num">2</div>&nbsp;Details</div>
+      <div class="progress-line"></div>
+      <div class="kyc-step" id="step3"><div class="num">3</div>&nbsp;Document</div>
+    </div>
+
+    <div id="formStep2">
+      <div class="field"><label>Full legal name</label><input type="text" id="fullName" placeholder="As shown on ID"></div>
+      <div class="field"><label>Date of birth</label><input type="date" id="dob"></div>
+      <div class="field"><label>Country of residence</label>
+        <select id="country">
+          <option>Egypt</option><option>Oman</option><option>Saudi Arabia</option>
+          <option>Turkey</option><option>United Arab Emirates</option><option>Other</option>
+        </select>
+      </div>
+      <button class="btn" onclick="goStep3()">Continue</button>
+    </div>
+
+    <div id="formStep3" class="hidden">
+      <div class="field"><label>ID type</label>
+        <select id="idType"><option>National ID</option><option>Passport</option><option>Driving License</option></select>
+      </div>
+      <div class="field"><label>ID number</label><input type="text" id="idNumber" placeholder="e.g. A12345678"></div>
+      <div class="field">
+        <label>Upload ID document (simulated)</label>
+        <input type="file" id="idFile">
+      </div>
+      <button class="btn" onclick="submitKyc()">Submit for Verification</button>
+    </div>
+
+    <div id="formDone" class="hidden" style="text-align:center;padding:10px 0;">
+      <div style="font-size:40px;">✅</div>
+      <h1 style="font-size:18px;">Verification Submitted</h1>
+      <p class="sub">In a real system this would be reviewed by compliance. For this demo, you're approved instantly.</p>
+      <button class="btn" onclick="goDashboard()">Go to Dashboard</button>
+    </div>
+  </div>
+</div>
+
+<script src="modules/auth.js"></script>
+<script>
+  requireLogin();
+  document.getElementById('userEmail').textContent = localStorage.getItem('demo_user_email') || 'user';
+
+  function goStep3(){
+    document.getElementById('step2').classList.remove('active');
+    document.getElementById('step2').classList.add('done');
+    document.getElementById('step2').querySelector('.num').textContent='✓';
+    document.getElementById('step3').classList.add('active');
+    document.getElementById('formStep2').classList.add('hidden');
+    document.getElementById('formStep3').classList.remove('hidden');
+  }
+  function submitKyc(){
+    document.getElementById('step3').classList.remove('active');
+    document.getElementById('step3').classList.add('done');
+    document.getElementById('step3').querySelector('.num').textContent='✓';
+    document.getElementById('formStep3').classList.add('hidden');
+    document.getElementById('formDone').classList.remove('hidden');
+    localStorage.setItem('demo_kyc_done','true');
+  }
+  function goDashboard(){ window.location.href='dashboard.html'; }
+</script>
+</body>
+</html>

@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>OnecentralBank — Banking made simple</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+:root{
+  --blue1:#3b3ff0;--blue2:#5b8def;--dark:#0b0b0c;--white:#fff;
+  --text-muted:#6b7280;--radius:16px;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;color:#111;background:#fff;}
+a{text-decoration:none;color:inherit;}
+
+/* ---- top promo banner ---- */
+.promo{
+  background:linear-gradient(90deg,var(--blue1),var(--blue2));
+  color:#fff;text-align:center;padding:12px 16px;font-size:14px;font-weight:500;
+}
+.promo a{text-decoration:underline;font-weight:700;margin-left:6px;}
+
+/* ---- nav ---- */
+.nav{display:flex;align-items:center;justify-content:space-between;padding:18px 40px;border-bottom:1px solid #eee;gap:24px;flex-wrap:nowrap;}
+.nav .brand{font-weight:800;font-size:20px;white-space:nowrap;margin-right:10px;}
+.nav .links{display:flex;gap:28px;font-size:14px;color:#333;flex:1;white-space:nowrap;}
+.nav .actions{display:flex;align-items:center;flex-shrink:0;}
+.nav .actions a{margin-left:18px;font-size:14px;font-weight:600;white-space:nowrap;}
+.nav .actions .cta{background:#111;color:#fff;padding:9px 18px;border-radius:30px;white-space:nowrap;}
+
+/* ---- hero with 3 account cards ---- */
+.hero{padding:90px 40px 70px;text-align:center;}
+.hero h1{font-size:42px;line-height:1.15;max-width:760px;margin:0 auto 30px;}
+.hero .btn-dark{display:inline-block;background:#111;color:#fff;padding:14px 28px;border-radius:30px;font-weight:600;margin-bottom:50px;}
+.cards-row{display:flex;gap:20px;justify-content:center;flex-wrap:wrap;max-width:1000px;margin:0 auto;}
+.acc-card{
+  width:280px;height:340px;border-radius:var(--radius);position:relative;overflow:hidden;
+  display:flex;flex-direction:column;justify-content:space-between;padding:20px;color:#fff;
+  background-size:cover;background-position:center;
+}
+.acc-card.c1{background:linear-gradient(160deg,#caa377,#8a6a4d);}
+.acc-card.c2{background:linear-gradient(160deg,#7aa6c2,#3c5a73);}
+.acc-card.c3{background:linear-gradient(160deg,#4a5b46,#222d20);}
+.acc-card .top{font-size:12px;opacity:.85;}
+.acc-card .amount{font-size:30px;font-weight:700;margin:6px 0 10px;}
+.acc-card .pill{background:#fff;color:#111;display:inline-block;padding:6px 14px;border-radius:20px;font-size:13px;font-weight:600;width:fit-content;}
+.acc-card .tx{background:rgba(255,255,255,.92);color:#111;border-radius:12px;padding:10px 12px;display:flex;align-items:center;gap:10px;font-size:13px;}
+.tx .icon{width:30px;height:30px;border-radius:50%;background:#3b3ff0;flex-shrink:0;}
+.tx .meta{flex:1;}
+.tx .meta .sub{color:var(--text-muted);font-size:11px;}
+.tx .amt{font-weight:700;}
+
+/* ---- trust badges ---- */
+.trust{text-align:center;padding:80px 40px;}
+.trust h2{font-size:26px;color:#333;margin-bottom:50px;font-weight:600;}
+.badges{display:flex;justify-content:center;gap:90px;flex-wrap:wrap;}
+.badge-item{font-size:14px;color:#444;}
+.badge-item .glyph{font-size:30px;margin-bottom:10px;}
+
+/* ---- savings hero (gradient sky instead of photo) ---- */
+.savings{
+  background:linear-gradient(180deg,#2b3a55 0%,#7d6a78 45%,#e8b98a 75%,#f4d9b0 100%);
+  color:#fff;text-align:center;padding:90px 40px 110px;position:relative;
+}
+.savings h1{font-size:40px;margin-bottom:18px;}
+.savings p{max-width:640px;margin:0 auto 8px;opacity:.92;}
+.savings .fine{font-size:13px;opacity:.75;margin-bottom:30px;}
+.savings .btn-light{display:inline-block;background:#fff;color:#111;padding:14px 28px;border-radius:30px;font-weight:600;margin-bottom:60px;}
+.float-card{
+  background:rgba(15,15,20,.55);backdrop-filter:blur(6px);
+  border-radius:18px;width:220px;margin:0 auto;padding:22px 18px;text-align:center;
+}
+.float-card .label{font-size:12px;opacity:.8;}
+.float-card .amt{font-size:26px;font-weight:700;margin:6px 0 10px;}
+.float-card .pill{background:#fff;color:#111;padding:5px 14px;border-radius:20px;font-size:12px;font-weight:600;display:inline-block;}
+.goal-tabs{margin-top:28px;display:flex;justify-content:center;gap:14px;}
+.goal-tabs span{background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.4);padding:9px 22px;border-radius:30px;font-size:14px;}
+.goal-tabs span.on{background:#fff;color:#111;border-color:#fff;font-weight:700;}
+
+/* ---- dark cards section ---- */
+.dark-section{background:var(--dark);color:#fff;text-align:center;padding:100px 40px;}
+.dark-section h1{font-size:38px;margin-bottom:16px;}
+.dark-section p{max-width:600px;margin:0 auto 6px;color:#bbb;}
+.dark-section .fine{font-size:12px;color:#777;margin-bottom:30px;}
+.dark-section .btn-light{display:inline-block;background:#fff;color:#111;padding:14px 26px;border-radius:30px;font-weight:600;margin-bottom:60px;}
+.card-fan{display:flex;justify-content:center;gap:-20px;perspective:1000px;}
+.fan-card{
+  width:170px;height:260px;border-radius:14px;margin-left:-30px;
+  display:flex;flex-direction:column;justify-content:space-between;padding:18px;color:#fff;font-weight:700;
+  transform:rotate(var(--r));box-shadow:0 20px 40px rgba(0,0,0,.5);
+}
+.fan-card:first-child{margin-left:0;}
+.fan-card.p1{background:linear-gradient(160deg,#e63ff0,#3b3ff0);--r:-8deg;}
+.fan-card.p2{background:linear-gradient(160deg,#cfd3da,#8b919c);--r:-3deg;color:#222;}
+.fan-card.p3{background:linear-gradient(160deg,#2b2b2e,#000);--r:3deg;}
+.fan-card.p4{background:repeating-linear-gradient(135deg,#444 0 2px,#333 2px 4px);--r:8deg;}
+.fan-card .chip{width:30px;height:22px;background:rgba(255,255,255,.6);border-radius:4px;}
+.toggle-row{margin-top:40px;display:flex;justify-content:center;gap:14px;}
+.toggle-row span{background:#1c1c1e;padding:9px 22px;border-radius:30px;font-size:14px;color:#ccc;}
+.toggle-row span.on{background:#fff;color:#111;font-weight:700;}
+
+/* ---- coins / invest section ---- */
+.invest-section{background:var(--dark);color:#fff;text-align:center;padding:90px 40px 110px;}
+.invest-section h1{font-size:36px;margin-bottom:18px;}
+.invest-section p{color:#bbb;max-width:600px;margin:0 auto 10px;}
+.invest-section .fine{font-size:12px;color:#777;margin-bottom:30px;}
+.invest-section .btn-light{display:inline-block;background:#fff;color:#111;padding:14px 26px;border-radius:30px;font-weight:600;margin-bottom:60px;}
+.coins{display:flex;justify-content:center;align-items:center;}
+.coin{
+  width:160px;height:190px;border-radius:50%;
+  background:radial-gradient(circle at 32% 28%,#9a9a9a 0%,#6b6b6b 32%,#3a3a3a 62%,#1a1a1a 100%);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  margin-left:-45px;
+  box-shadow:inset 0 8px 18px rgba(255,255,255,.18), inset 0 -14px 26px rgba(0,0,0,.55), 0 10px 20px rgba(0,0,0,.5);
+  animation:coinFloat 4.5s ease-in-out infinite;
+}
+.coin .glyph{font-size:38px;font-weight:800;color:rgba(255,255,255,.6);line-height:1;}
+.coin .ticker{font-size:11px;font-weight:700;color:rgba(255,255,255,.4);letter-spacing:1px;margin-top:4px;}
+.coin:first-child{margin-left:0;}
+.coin:nth-child(2){animation-delay:.3s;}
+.coin:nth-child(3){animation-delay:.6s;}
+.coin:nth-child(4){animation-delay:.9s;}
+@keyframes coinFloat{
+  0%,100%{transform:translateY(0);}
+  50%{transform:translateY(-10px);}
+}
+
+/* ---- stats strip ---- */
+.stats{background:#fff;text-align:center;padding:90px 40px;}
+.stats h2{font-size:30px;margin-bottom:30px;}
+.stats .btn-dark{display:inline-block;background:#111;color:#fff;padding:14px 26px;border-radius:30px;font-weight:600;}
+
+/* ---- footer ---- */
+footer{background:var(--dark);color:#ccc;padding:70px 40px 40px;}
+.footer-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:24px;max-width:1200px;margin:0 auto 50px;}
+.footer-grid h4{color:#fff;font-size:14px;margin-bottom:16px;}
+.footer-grid a{display:block;font-size:13px;color:#999;margin-bottom:10px;}
+.footer-bottom{max-width:1200px;margin:0 auto;border-top:1px solid #2a2a2c;padding-top:30px;font-size:12px;color:#777;}
+.footer-brand{font-size:22px;font-weight:800;color:#fff;margin-bottom:30px;}
+
+@media (max-width:900px){
+  .footer-grid{grid-template-columns:repeat(2,1fr);}
+  .hero h1,.dark-section h1,.savings h1{font-size:28px;}
+  .card-fan{flex-wrap:wrap;}
+}
+</style>
+</head>
+<body>
+
+    <div class="promo">Earn 5% on your balance, no lock-in. <a href="login.html">Open an account →</a></div>
+
+    <div class="nav">
+        <div class="brand">OnecentralBank</div>
+        <div class="links">
+            <a href="coming-soon.html">Personal</a><a href="coming-soon.html">Business</a><a href="coming-soon.html">Crypto</a><a href="coming-soon.html">Plans</a><a href="coming-soon.html">Help</a>
+        </div>
+        <div class="actions">
+            <a href="login.html">Log in</a>
+            <a href="coming-soon.html" class="cta">Get the app</a>
+        </div>
+    </div>
+
+    <!-- HERO -->
+    <section class="hero">
+        <h1>One account for everything you need, with a OnecentralBank account.</h1>
+        <a class="btn-dark" href="login.html">Open an account</a>
+        <div class="cards-row">
+            <div class="acc-card c1">
+                <div><div class="top">Personal · OMR</div><div class="amount">﷼3,126</div><div class="pill">Accounts</div></div>
+                <div class="tx"><div class="icon"></div><div class="meta">Coffee in Muscat<div class="sub">Yesterday, 09:02</div></div><div class="amt">-﷼3.25</div></div>
+            </div>
+            <div class="acc-card c2">
+                <div><div class="top">Personal</div><div class="amount">$6,012</div><div class="pill">Accounts</div></div>
+                <div class="tx"><div class="icon"></div><div class="meta">Salary deposit<div class="sub">2 days ago</div></div><div class="amt">+$4,200</div></div>
+            </div>
+            <div class="acc-card c3">
+                <div><div class="top">Personal</div><div class="amount">£2,350</div><div class="pill">Accounts</div></div>
+                <div class="tx"><div class="icon"></div><div class="meta">House bills<div class="sub">Due today</div></div><div class="amt">-£225</div></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TRUST BADGES -->
+    <section class="trust">
+        <h2>Join thousands of customers worldwide</h2>
+        <div class="badges">
+            <div class="badge-item"><div class="glyph">★</div>4.7 out of 5 customer rating</div>
+            <div class="badge-item"><div class="glyph">⬇</div>Top 5 most downloaded finance app</div>
+            <div class="badge-item"><div class="glyph">🛡</div>Bank-grade security &amp; protection</div>
+            <div class="badge-item"><div class="glyph">🏆</div>Best Digital Bank — Demo Awards</div>
+        </div>
+    </section>
+
+    <!-- SAVINGS -->
+    <section class="savings">
+        <h1>Save with 5% returns</h1>
+        <p>Grow your balance with interest paid every day, withdraw anytime with no penalties or fees.</p>
+        <p class="fine">Open an Instant Access Savings account to benefit from the boosted rate. </p>
+        <a class="btn-light" href="index.html">Explore Savings</a>
+        <div class="float-card">
+            <div class="label">New adventure</div>
+            <div class="amt">$1,326</div>
+            <div class="pill">Accounts</div>
+        </div>
+        <div class="goal-tabs">
+            <span class="on">Adventure</span><span>Wedding</span><span>Moving</span><span>Medical</span><span>Collage</span>
+        </div>
+    </section>
+
+    <!-- DARK CARDS -->
+    <section class="dark-section">
+        <h1>Elevate your spend</h1>
+        <p>Earn rewards on every purchase with one of our cards, then redeem them for perks.</p>
+        <p class="fine">Some cards available on paid plans only. Demo only — fees do not apply.</p>
+        <a class="btn-light" href="index.html">Start earning</a>
+        <div class="card-fan">
+            <div class="fan-card p1"><div class="chip"></div>OnecentralBank</div>
+            <div class="fan-card p2"><div class="chip"></div>OnecentralBank</div>
+            <div class="fan-card p3"><div class="chip"></div>OnecentralBank</div>
+            <div class="fan-card p4"><div class="chip"></div>OnecentralBank</div>
+        </div>
+        <div class="toggle-row"><span class="on">Physical cards</span><span>Virtual cards</span></div>
+    </section>
+
+    <!-- INVEST / COINS -->
+    <section class="invest-section">
+        <h1>Explore 3,000+ stocks and ETFs</h1>
+        <p>Invest in some of the biggest and most influential companies in the world, commission-free within your monthly allowance.</p>
+        <p class="fine">Demo only — no real investing occurs. Capital at risk in real products.</p>
+        <a class="btn-light" href="index.html">Try it out</a>
+        <div class="coins">
+            <div class="coin"><div class="glyph">₿</div><div class="ticker">BTC</div></div>
+            <div class="coin"><div class="glyph">Ξ</div><div class="ticker">ETH</div></div>
+            <div class="coin"><div class="glyph">$</div><div class="ticker">USDT</div></div>
+            <div class="coin"><div class="glyph">◎</div><div class="ticker">SOL</div></div>
+        </div>
+    </section>
+
+    <!-- STATS -->
+    <section class="stats">
+        <h2>Join thousands using OnecentralBank — the demo edition</h2>
+        <a class="btn-dark" href="index.html">Get started</a>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-grid">
+            <div>
+                <h4>Global Finances</h4>
+                <a href="#">International Transfers</a><a href="#">Lounges</a><a href="#">Insurance</a>
+                <h4 style="margin-top:24px;">Investments</h4>
+                <a href="#">Stocks</a><a href="#">Commodities</a>
+            </div>
+            <div>
+                <h4>Help</h4>
+                <a href="#">Contact Us</a><a href="#">Help Centre</a><a href="#">System Status</a><a href="#">Developers API</a>
+            </div>
+            <div>
+                <h4>Security</h4>
+                <a href="#">How We Protect Your Money</a><a href="#">Report Lost Device</a><a href="#">Fraud &amp; Scams</a>
+                <h4 style="margin-top:24px;">Crypto</h4>
+                <a href="#">Crypto</a><a href="#">Ramp</a>
+            </div>
+            <div>
+                <h4>Plans</h4>
+                <a href="#">Standard</a><a href="#">Plus</a><a href="#">Premium</a><a href="#">Metal</a><a href="#">Compare Plans</a>
+            </div>
+            <div>
+                <h4>Accounts</h4>
+                <a href="#">Bank Account</a><a href="#">Joint Account</a><a href="#">Professional Account</a><a href="#">Savings Account</a>
+            </div>
+            <div>
+                <h4>Smart Spending</h4>
+                <a href="#">Cards</a><a href="#">Send &amp; Receive</a><a href="#">Money Management</a><a href="#">Linked Accounts</a>
+            </div>
+        </div>
+        <div class="footer-brand">OnecentralBank</div>
+        <div class="footer-bottom">
+            © OnecentralBank  2026 — online banking solution. Built for portfolio/trade purposes only.  real accounts, transactions, or financial services are provided.
+        </div>
+    </footer>
+
+</body>
+</html>
